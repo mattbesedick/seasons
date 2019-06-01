@@ -16,7 +16,7 @@ class App extends React.Component {
 
 	state = { lat: null, errorMessage: '' };
 
-	render() {
+	renderContent() {
 		if (this.state.errorMessage && !this.state.lat) {
 			console.log('this is gettiing called first');
 			return <div>Error: {this.state.errorMessage}</div>;
@@ -25,7 +25,11 @@ class App extends React.Component {
 		if (!this.state.errorMessage && this.state.lat) {
 			return <SeasonDisplay lat={this.state.lat} />;
 		}
-		return <Spinner />;
+		return <Spinner message="Please accept location request" />;
+	}
+
+	render() {
+		return <div className="border red">{this.renderContent()}</div>;
 	}
 
 	// Lifecyle methods of a component
